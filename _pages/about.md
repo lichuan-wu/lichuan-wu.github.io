@@ -4,7 +4,7 @@ title: about
 permalink: /
 subtitle: >
   Associate Professor in Meteorology ·
-  <a href="https://www.geo.uu.se/research/luval/" target="_blank">Uppsala University</a>
+  <a href="https://www.uu.se/en/contact-and-organisation/staff?query=N13-1408" target="_blank">Uppsala University</a>
 
 profile:
   align: right
