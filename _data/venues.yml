@@ -1,0 +1,7 @@
+# Optional colour or link for a venue abbreviation (the `abbr` field in
+# _bibliography/papers.bib). Example:
+#
+# "JPO":
+#   url: https://journals.ametsoc.org/view/journals/phoc/phoc-overview.xml
+#   color: "#00369f"
+{}

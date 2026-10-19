@@ -1,0 +1,7 @@
+# Co-author links for the publication list, keyed by lower-case last name.
+# Optional. Example:
+#
+# "rutgersson":
+#   - firstname: ["Anna", "A."]
+#     url: https://www.uu.se/en/contact-and-organisation/staff?query=N96-1009
+{}

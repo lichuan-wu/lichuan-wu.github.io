@@ -1,0 +1,101 @@
+{%- capture author_name -%}
+  {{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}
+{%- endcapture -%}
+
+{%- if site.title == blank -%}
+  {%- assign site_name = author_name -%}
+{%- else -%}
+  {%- assign site_name = site.title -%}
+{%- endif -%}
+
+{%- if page.url == '/' or page.title == blank -%}
+  {%- assign page_title = site_name -%}
+{%- else -%}
+  {%- capture page_title %}{{ page.title }} | {{ site_name }}{% endcapture -%}
+{%- endif -%}
+
+{%- assign page_description = page.description | default: site.description | strip_newlines | strip -%}
+{%- assign page_url = page.url | replace: 'index.html', '' | absolute_url -%}
+{%- assign preview_image = page.og_image | default: site.og_image -%}
+{%- if preview_image -%}
+  {%- unless preview_image contains '://' -%}
+    {%- assign preview_image = preview_image | absolute_url -%}
+  {%- endunless -%}
+{%- endif -%}
+
+<!-- Standard metadata -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>{{ page_title }}</title>
+<meta name="author" content="{{ author_name }}">
+<meta name="description" content="{{ page_description }}">
+<meta name="keywords" content="{{ page.keywords | default: site.keywords }}">
+
+{% if site.enable_google_verification %}
+  <meta name="google-site-verification" content="{{ site.google_site_verification }}">
+{% endif %}
+
+{% if site.serve_og_meta %}
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="{{ site_name }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:url" content="{{ page_url }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:locale" content="{{ site.lang }}">
+  {% if preview_image %}
+    <meta property="og:image" content="{{ preview_image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ author_name }} — {{ site.description | strip_newlines | strip }}">
+  {% endif %}
+
+  <!-- Twitter/X card, also read by Bluesky, LinkedIn, Slack and Mastodon -->
+  <meta name="twitter:card" content="{% if preview_image %}summary_large_image{% else %}summary{% endif %}">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_description }}">
+  {% if preview_image %}
+    <meta name="twitter:image" content="{{ preview_image }}">
+  {% endif %}
+{% endif %}
+
+{% if site.serve_schema_org %}
+  <!-- Schema.org. sameAs lets search engines link this page to the same person elsewhere. -->
+  {%- assign sameas = '' | split: ',' -%}
+  {%- if site.data.socials.scholar_userid -%}
+    {%- capture link %}https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}{% endcapture -%}
+    {%- assign sameas = sameas | push: link -%}
+  {%- endif -%}
+  {%- if site.data.socials.orcid_id -%}
+    {%- capture link %}https://orcid.org/{{ site.data.socials.orcid_id }}{% endcapture -%}
+    {%- assign sameas = sameas | push: link -%}
+  {%- endif -%}
+  {%- if site.data.socials.github_username -%}
+    {%- capture link %}https://github.com/{{ site.data.socials.github_username }}{% endcapture -%}
+    {%- assign sameas = sameas | push: link -%}
+  {%- endif -%}
+  {%- if site.data.socials.linkedin_username -%}
+    {%- capture link %}https://www.linkedin.com/in/{{ site.data.socials.linkedin_username }}{% endcapture -%}
+    {%- assign sameas = sameas | push: link -%}
+  {%- endif -%}
+  {%- if site.data.socials.bluesky_url -%}
+    {%- assign sameas = sameas | push: site.data.socials.bluesky_url -%}
+  {%- endif -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{ author_name }}",
+      "url": "{{ '/' | absolute_url }}",
+      "description": "{{ site.description | strip_newlines | strip }}",
+      "jobTitle": "Associate Professor in Meteorology",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Uppsala University",
+        "url": "https://www.uu.se/"
+      },
+      {% if preview_image %}"image": "{{ preview_image }}",{% endif %}
+      "sameAs": {{ sameas | jsonify }}
+    }
+  </script>
+{% endif %}

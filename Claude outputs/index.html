@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en" data-theme-setting="system">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Lichuan Wu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap">
+<style>
+/* ============================================================
+   Design tokens — Uppsala University academic theme
+   Layout: sticky navbar, two-column about, stacked content sections
+   ============================================================ */
+:root {
+  --accent:       #990000;
+  --accent-dim:   rgba(153,0,0,0.12);
+  --bg:           #ffffff;
+  --bg-subtle:    #f7f5f5;
+  --fg:           #1a1a1a;
+  --fg-muted:     #646464;
+  --fg-light:     #8a8a8a;
+  --border:       rgba(0,0,0,0.10);
+  --nav-bg:       rgba(255,255,255,0.96);
+  --shadow-sm:    0 1px 4px rgba(0,0,0,0.08);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.10);
+  --radius:       6px;
+  --font-display: 'Crimson Pro', 'Georgia', serif;
+  --font-body:    'Source Sans 3', system-ui, sans-serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent:     #e08585;
+    --accent-dim: rgba(224,133,133,0.12);
+    --bg:         #1c1c1d;
+    --bg-subtle:  #252526;
+    --fg:         #e8e6e6;
+    --fg-muted:   #a0a0a0;
+    --fg-light:   #707070;
+    --border:     rgba(255,255,255,0.10);
+    --nav-bg:     rgba(28,28,29,0.96);
+    --shadow-sm:  0 1px 4px rgba(0,0,0,0.30);
+    --shadow-md:  0 4px 16px rgba(0,0,0,0.40);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --accent:     #e08585;
+  --accent-dim: rgba(224,133,133,0.12);
+  --bg:         #1c1c1d;
+  --bg-subtle:  #252526;
+  --fg:         #e8e6e6;
+  --fg-muted:   #a0a0a0;
+  --fg-light:   #707070;
+  --border:     rgba(255,255,255,0.10);
+  --nav-bg:     rgba(28,28,29,0.96);
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.30);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.40);
+  color-scheme: dark;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--fg);
+  background: var(--bg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+
+/* Scroll offset for sticky nav */
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 64px; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+a:hover { text-decoration: underline; opacity: 0.82; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.25; text-wrap: balance; }
+h2 { font-size: 1.55rem; color: var(--fg); margin-bottom: 1.2rem; }
+h3 { font-size: 1.15rem; }
+p  { max-width: 68ch; }
+
+img { max-width: 100%; display: block; }
+
+abbr[title] { text-decoration: underline dotted; cursor: help; }
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.nav-sentinel {
+  position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  z-index: 101;
+}
+
+nav {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0;
+  height: 56px;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--fg);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+.nav-brand:hover { text-decoration: none; color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius);
+  letter-spacing: 0.01em;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+  text-decoration: none;
+}
+
+/* hamburger */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius);
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--fg-muted);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* theme toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.3rem 0.55rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  line-height: 1;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
+
+/* mobile nav */
+@media (max-width: 640px) {
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: calc(env(safe-area-inset-top, 0px) + 56px);
+    left: 0; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 1rem 1rem;
+    display: none;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 0.5rem 0.5rem; font-size: 0.95rem; }
+}
+
+/* ============================================================
+   Page wrapper
+   ============================================================ */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-block: 2.5rem 5rem;
+}
+
+/* ============================================================
+   About section  — two-column on wide, stacked on narrow
+   ============================================================ */
+#about .about-grid {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  #about .about-grid {
+    grid-template-columns: 1fr;
+  }
+  #about .profile-col {
+    order: -1;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+}
+
+.profile-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.profile-avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-avatar svg { width: 100%; height: 100%; }
+
+.profile-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.profile-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.83rem;
+  color: var(--fg-muted);
+  line-height: 1.45;
+}
+.profile-info-item .icon {
+  flex-shrink: 0;
+  width: 14px;
+  text-align: center;
+  margin-top: 2px;
+  color: var(--accent);
+}
+
+.about-name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.about-subtitle {
+  font-size: 0.95rem;
+  color: var(--fg-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+.about-subtitle a { color: var(--accent); }
+
+.about-body { font-size: 1rem; line-height: 1.75; }
+.about-body p + p { margin-top: 0.9em; }
+.about-body em { color: var(--accent); font-style: italic; }
+.about-body strong { color: var(--fg); }
+
+/* Social links */
+.social-row {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1.4rem;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.3rem 0.75rem;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.social-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  text-decoration: none;
+}
+.social-btn svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
+
+/* ============================================================
+   Section divider
+   ============================================================ */
+.section-sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--fg);
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+/* ============================================================
+   News
+   ============================================================ */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.news-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0.75rem 1rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+.news-item:last-child { border-bottom: none; }
+
+.news-date {
+  font-size: 0.8rem;
+  color: var(--fg-light);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.1em;
+  white-space: nowrap;
+}
+
+.news-text { color: var(--fg); line-height: 1.55; }
+.news-text a { color: var(--accent); }
+.news-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 3px;
+  padding: 0.1em 0.45em;
+  margin-right: 0.35em;
+  vertical-align: middle;
+  line-height: 1.6;
+}
+.news-badge.award { background: #b7860a; }
+.news-badge.grant { background: #2a7a3b; }
+.news-badge.pub   { background: var(--accent); }
+
+/* ============================================================
+   Publications
+   ============================================================ */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pub-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 0 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+.pub-item:last-child { border-bottom: none; }
+
+.pub-num {
+  font-size: 0.78rem;
+  color: var(--fg-light);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.15em;
+  text-align: right;
+}
+
+.pub-content { min-width: 0; }
+.pub-title {
+  font-weight: 600;
+  color: var(--fg);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.pub-authors {
+  color: var(--fg-muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+.pub-authors .me { font-weight: 600; color: var(--fg); }
+.pub-venue {
+  font-size: 0.83rem;
+  color: var(--fg-muted);
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+.pub-venue strong { font-style: normal; font-weight: 600; color: var(--accent); }
+.pub-year {
+  font-size: 0.78rem;
+  color: var(--fg-light);
+  margin-left: 0.4em;
+}
+
+/* pub filter tabs */
+.pub-filter {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+}
+.filter-btn {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.28rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover, .filter-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.filter-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ============================================================
+   Teaching
+   ============================================================ */
+.teaching-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.teaching-item {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+.teaching-item:last-child { border-bottom: none; }
+
+.teaching-code {
+  font-size: 0.78rem;
+  color: var(--fg-light);
+  font-family: monospace;
+}
+.teaching-title { color: var(--fg); font-weight: 500; line-height: 1.4; }
+.teaching-role {
+  font-size: 0.78rem;
+  color: var(--fg-light);
+  white-space: nowrap;
+}
+.teaching-detail {
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+  grid-column: 2 / -1;
+  margin-top: -0.3rem;
+}
+
+@media (max-width: 600px) {
+  .teaching-item {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+  .teaching-role { display: none; }
+}
+
+/* ============================================================
+   CV section
+   ============================================================ */
+.cv-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 640px) { .cv-columns { grid-template-columns: 1fr; } }
+
+.cv-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cv-entries { display: flex; flex-direction: column; gap: 1.1rem; }
+
+.cv-entry {}
+
+.cv-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.cv-role {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--fg);
+  line-height: 1.35;
+}
+
+.cv-period {
+  font-size: 0.78rem;
+  color: var(--fg-light);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.1em;
+}
+
+.cv-place {
+  font-size: 0.84rem;
+  color: var(--fg-muted);
+}
+
+.cv-note {
+  font-size: 0.80rem;
+  color: var(--fg-light);
+  font-style: italic;
+  margin-top: 0.1rem;
+}
+
+/* Awards */
+.awards-list { display: flex; flex-direction: column; gap: 0.55rem; }
+.award-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.award-item:last-child { border-bottom: none; }
+.award-name { color: var(--fg); }
+.award-year { color: var(--fg-light); white-space: nowrap; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+
+/* ============================================================
+   Research projects (grants)
+   ============================================================ */
+.grant-list { display: flex; flex-direction: column; gap: 0; }
+.grant-item {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.90rem;
+}
+.grant-item:last-child { border-bottom: none; }
+.grant-title { font-weight: 600; color: var(--fg); line-height: 1.4; margin-bottom: 0.2rem; }
+.grant-meta { color: var(--fg-muted); font-size: 0.82rem; }
+.grant-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 0.08em 0.4em;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
+.tag-pi   { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+.tag-co   { background: transparent; color: var(--fg-muted); border: 1px solid var(--border); }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border);
+  margin-top: 4rem;
+  padding: 2rem 0;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.83rem;
+  color: var(--fg-muted);
+}
+
+/* ============================================================
+   Back to top
+   ============================================================ */
+.back-to-top {
+  position: fixed;
+  bottom: max(30px, env(safe-area-inset-bottom, 0px));
+  right: max(30px, env(safe-area-inset-right, 0px));
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--fg-muted);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  z-index: 50;
+  box-shadow: var(--shadow-md);
+}
+.back-to-top.visible { opacity: 0.7; pointer-events: auto; }
+.back-to-top:hover   { opacity: 1; }
+.back-to-top svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+.show-more-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.hidden-pub { display: none; }
+.hidden-pub.visible { display: grid; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Safe-area band above nav -->
+<div class="nav-sentinel" aria-hidden="true"></div>
+
+<!-- ============================================================
+     Navigation
+     ============================================================ -->
+<nav role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#about" class="nav-brand">Lichuan Wu</a>
+    <ul class="nav-links" id="nav-links" role="list">
+      <li><a href="#about"        class="nav-link">About</a></li>
+      <li><a href="#news"         class="nav-link">News</a></li>
+      <li><a href="#publications" class="nav-link">Publications</a></li>
+      <li><a href="#teaching"     class="nav-link">Teaching</a></li>
+      <li><a href="#projects"     class="nav-link">Grants</a></li>
+      <li><a href="#cv"           class="nav-link">CV</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:0.5rem">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark theme">☀︎ / ☽</button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<main>
+<div class="page">
+
+<section id="about" aria-label="About">
+  <div class="about-grid">
+
+    <!-- Text column -->
+    <div>
+      <h1 class="about-name">Lichuan Wu</h1>
+      <p class="about-subtitle">
+        Associate Professor (Senior Lecturer) in Meteorology ·
+        <a href="https://www.uu.se/en/department/earth-sciences" target="_blank" rel="noopener">Department of Earth Sciences</a>,
+        <a href="https://www.uu.se/en" target="_blank" rel="noopener">Uppsala University</a>
+      </p>
+
+      <div class="about-body">
+        <p>
+          I am a meteorologist and physical oceanographer at Uppsala University working on
+          <em>air–sea–ice interaction</em> and the role of <em>ocean surface waves</em> in the Earth system.
+          My research spans from micro-scale turbulent fluxes at the air–sea–ice interface to global-scale
+          impacts on climate, with a particular focus on the <em>marginal ice zone</em> and the Arctic.
+        </p>
+        <p>
+          My work integrates observational campaigns, remote sensing, and coupled numerical models
+          (atmosphere–wave–ocean–ice) to understand how momentum, heat, and mass are exchanged across
+          the air–sea–ice boundary and how these exchanges feed back into weather and climate systems,
+          including <em>polar lows</em> and <em>atmospheric rivers</em>.
+        </p>
+        <p>
+          I hold a <strong>Docent (Associate Professorship)</strong> in Meteorology from Uppsala University (2021).
+          Before my current position, I was an Assistant Professor at Uppsala (2019–2022) and held postdoctoral
+          positions at SMHI, the Norwegian Meteorological Institute, and Johns Hopkins University.
+          I have received grants from the Swedish Research Council, Formas, Carl Tryggers Stiftelse, and
+          the Horizon Europe programme, totalling more than 10M SEK as PI.
+        </p>
+        <p>
+          I am currently on an international sabbatical at the <a href="https://www.reading.ac.uk" target="_blank" rel="noopener">University of Reading, UK</a> (2025).
+        </p>
+      </div>
+
+      <!-- Social / contact row -->
+      <div class="social-row" aria-label="Contact and profiles">
+        <a class="social-btn" href="mailto:lichuan.wu@geo.uu.se">
+          <!-- envelope icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm16 2l-8 5-8-5v1.5l8 5 8-5V6z"/></svg>
+          lichuan.wu@geo.uu.se
+        </a>
+        <a class="social-btn" href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5 12 0z"/></svg>
+          Google Scholar
+        </a>
+        <a class="social-btn" href="https://orcid.org/0000-0002-9900-9819" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.947.947 0 0 1 0-1.894zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 3.872-2.484 3.872-3.722 0-2.016-1.284-3.722-3.828-3.722h-2.341z"/></svg>
+          ORCID
+        </a>
+        <a class="social-btn" href="https://www.researchgate.net/profile/Lichuan-Wu" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.085 12.085 0 0 0-.329 2.184c-.032.37-.052.737-.058 1.099-.008.493-.01.895-.01 1.204v.054c0 .39.004.63.01.73.07 1.103.218 2.037.449 2.798.23.76.559 1.37.989 1.83.43.46.963.79 1.599.99s1.342.3 2.119.3c.78 0 1.495-.13 2.148-.39.653-.26 1.22-.65 1.703-1.17.485-.52.86-1.16 1.127-1.93.267-.77.4-1.66.4-2.67V8.5h-7.027v2.19h4.4v.16c-.062.94-.297 1.7-.707 2.28-.41.58-.915.98-1.516 1.2-.6.22-1.252.33-1.956.33-.64 0-1.228-.1-1.762-.3-.534-.2-.986-.52-1.357-.96-.37-.44-.655-1.01-.855-1.71-.2-.7-.3-1.55-.3-2.55V9.13c0-.87.09-1.65.27-2.34.18-.69.45-1.27.81-1.74.36-.47.81-.83 1.35-1.08.54-.25 1.17-.38 1.89-.38.54 0 1.03.07 1.47.22.44.15.82.36 1.15.64.33.28.61.6.83.97.22.37.39.77.51 1.2h2.35c-.12-.73-.36-1.42-.72-2.07-.36-.65-.82-1.22-1.38-1.71-.56-.49-1.22-.87-1.98-1.14C21.41.13 20.55 0 19.586 0zM0 .19v23.62h7.718c1.326 0 2.49-.22 3.495-.66 1.005-.44 1.844-1.04 2.517-1.8.673-.76 1.183-1.65 1.53-2.67.347-1.02.52-2.11.52-3.27 0-.96-.12-1.87-.36-2.73-.24-.86-.59-1.62-1.05-2.28-.46-.66-1.03-1.21-1.71-1.65-.68-.44-1.47-.73-2.37-.88v-.11c.76-.22 1.43-.56 2.01-1.02.58-.46 1.06-1 1.44-1.62.38-.62.66-1.29.84-2.01.18-.72.27-1.45.27-2.19 0-1.11-.18-2.08-.54-2.91C13.9 1.94 13.38 1.27 12.7.76 12.02.25 11.2-.05 10.23-.05H0V.19zm2.44 2.25h7.57c.58 0 1.1.12 1.57.36.47.24.88.56 1.22.97.34.41.6.88.78 1.41.18.53.27 1.08.27 1.65 0 .57-.08 1.13-.24 1.67-.16.54-.4 1.01-.72 1.41-.32.4-.72.73-1.2.97-.48.24-1.04.36-1.68.36H2.44V2.44zM2.44 13.5h8.14c.69 0 1.31.12 1.86.36.55.24 1.02.58 1.41 1.02.39.44.69.97.9 1.59.21.62.31 1.3.31 2.04 0 .76-.11 1.46-.33 2.1-.22.64-.54 1.19-.96 1.65-.42.46-.93.82-1.53 1.08-.6.26-1.27.39-2.01.39H2.44V13.5z"/></svg>
+          ResearchGate
+        </a>
+        <a class="social-btn" href="https://www.uu.se/en/contact-and-organisation/staff?query=lichuan.wu" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+          Uppsala University
+        </a>
+      </div>
+    </div>
+
+    <!-- Profile column -->
+    <div class="profile-col">
+      <div class="profile-avatar" aria-label="Profile photo placeholder">
+        <!-- Initials avatar in UU red -->
+        <svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="180" height="180" fill="var(--accent-dim)"/>
+          <circle cx="90" cy="68" r="32" fill="var(--accent)" opacity="0.25"/>
+          <circle cx="90" cy="68" r="24" fill="var(--accent)" opacity="0.5"/>
+          <text x="90" y="78" text-anchor="middle" font-family="'Crimson Pro',Georgia,serif"
+                font-size="26" font-weight="600" fill="var(--accent)" opacity="0.9">LW</text>
+          <ellipse cx="90" cy="145" rx="48" ry="30" fill="var(--accent)" opacity="0.2"/>
+          <text x="90" y="158" text-anchor="middle" font-family="'Source Sans 3',system-ui,sans-serif"
+                font-size="9" fill="var(--fg-muted)" letter-spacing="1">Add photo here</text>
+        </svg>
+      </div>
+
+      <div class="profile-info">
+        <div class="profile-info-item">
+          <span class="icon">📍</span>
+          <span>Department of Earth Sciences<br>Uppsala University<br>SE-752 36 Uppsala, Sweden</span>
+        </div>
+        <div class="profile-info-item">
+          <span class="icon">✉</span>
+          <a href="mailto:lichuan.wu@geo.uu.se">lichuan.wu@geo.uu.se</a>
+        </div>
+        <div class="profile-info-item">
+          <span class="icon">📞</span>
+          <span>+46 (0) 700 760 015</span>
+        </div>
+        <div class="profile-info-item">
+          <span class="icon">🎓</span>
+          <span>Docent in Meteorology (2021)<br>Ph.D. Meteorology (2017)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWS
+     ============================================================ -->
+<hr class="section-sep">
+<section id="news" aria-label="News">
+  <h2 class="section-heading">news</h2>
+  <div class="news-list" role="list">
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Oct 2026</div>
+      <div class="news-text"><span class="news-badge award">Award</span>Recognized as <strong>Excellent Editor</strong> of Ocean-Land-Atmosphere Research (OLAR).</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Sep 2026</div>
+      <div class="news-text"><span class="news-badge pub">Paper</span>New paper on <em>wave attenuation by sea ice in the marginal ice zone</em> published in <strong>Journal of Physical Oceanography</strong>.</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Jan 2025</div>
+      <div class="news-text"><span class="news-badge grant">Grant</span>Two major grants awarded: <strong>Formas Career Grant</strong> (5.85M SEK) and <strong>Swedish Research Council</strong> (4.16M SEK) for research on air–sea–ice turbulence in the marginal ice zone.</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Jan 2025</div>
+      <div class="news-text">Started international sabbatical at the <a href="https://www.reading.ac.uk" target="_blank" rel="noopener">University of Reading, UK</a>.</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Sep 2025</div>
+      <div class="news-text"><span class="news-badge pub">Paper</span>Paper on <em>ocean surface waves impact on global air–sea CO₂ flux</em> published in <strong>Biogeochemistry</strong>.</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Apr 2026</div>
+      <div class="news-text"><span class="news-badge grant">Grant</span>Awarded Crafoord grant (290k SEK) for a stereo video system at Östergarnsholm station to explore wave and air–sea turbulent flux interactions.</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Apr 2025</div>
+      <div class="news-text">Invited seminar at <strong>ECMWF</strong>, Bonn, Germany.</div>
+    </div>
+
+    <div class="news-item" role="listitem">
+      <div class="news-date">Jan 2025</div>
+      <div class="news-text">Two new PhD students started: <strong>Shijie Peng</strong> and <strong>Moa Sjöberg</strong> on marginal ice zone dynamics.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PUBLICATIONS
+     ============================================================ -->
+<hr class="section-sep">
+<section id="publications" aria-label="Publications">
+  <h2 class="section-heading">selected publications</h2>
+
+  <div class="pub-filter" role="group" aria-label="Filter publications">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="waves">Air–Sea–Waves</button>
+    <button class="filter-btn" data-filter="ice">Ice–Arctic</button>
+    <button class="filter-btn" data-filter="atmosphere">Atmosphere</button>
+    <button class="filter-btn" data-filter="review">Review</button>
+  </div>
+
+  <div class="pub-list" role="list" id="pub-list">
+
+    <div class="pub-item" role="listitem" data-tags="ice waves">
+      <div class="pub-num">[1]</div>
+      <div class="pub-content">
+        <span class="pub-title">Wave attenuation by sea ice in the marginal ice zone: Estimation and rollover behavior</span>
+        <div class="pub-authors">Z. Cheng, Ø. Breivik, J. Rabault, S. Cheng, J. Kousal, T. Nose, M. Hoppmann, T. Waseda, T. Kodaira, and <span class="me">Wu, L.*</span></div>
+        <div class="pub-venue"><strong>Journal of Physical Oceanography</strong> <span class="pub-year">2026</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves">
+      <div class="pub-num">[2]</div>
+      <div class="pub-content">
+        <span class="pub-title">A subgrid-scale parameterization of wave-structure interactions for spectral wave models: Idealized simulations in offshore wind farm conditions</span>
+        <div class="pub-authors">B. Zhao, E. Sahlée, J. Du, and <span class="me">Wu, L.*</span></div>
+        <div class="pub-venue"><strong>Journal of Advances in Modeling Earth Systems</strong> <span class="pub-year">2026</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="ice">
+      <div class="pub-num">[4]</div>
+      <div class="pub-content">
+        <span class="pub-title">The impact of polar lows on the underlying ocean varies significantly by location</span>
+        <div class="pub-authors">T. Lin and <span class="me">Wu, L.*</span></div>
+        <div class="pub-venue"><strong>Communications Earth &amp; Environment</strong> <span class="pub-year">2025</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves">
+      <div class="pub-num">[5]</div>
+      <div class="pub-content">
+        <span class="pub-title">Ocean surface waves impact on global air–sea CO₂ flux</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, Y. Cai, and A. Rutgersson</div>
+        <div class="pub-venue"><strong>Biogeochemistry</strong> <span class="pub-year">2025</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="review waves">
+      <div class="pub-num">[18]</div>
+      <div class="pub-content">
+        <span class="pub-title">A review of surface swell waves and their role in air–sea interactions</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, E. Sahlée, E. Nilsson, and A. Rutgersson</div>
+        <div class="pub-venue"><strong>Ocean Modelling</strong>, 190, 102397 <span class="pub-year">2024</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="ice atmosphere">
+      <div class="pub-num">[21]</div>
+      <div class="pub-content">
+        <span class="pub-title">Development of polar lows in future climate scenarios over the Barents Sea</span>
+        <div class="pub-authors">T. Lin, A. Rutgersson, and <span class="me">Wu, L.*</span></div>
+        <div class="pub-venue"><strong>Journal of Climate</strong> <span class="pub-year">2024</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves">
+      <div class="pub-num">[29]</div>
+      <div class="pub-content">
+        <span class="pub-title">The redistribution of air–sea momentum and turbulent kinetic energy fluxes by ocean waves</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, Ø. Breivik, and F. Qiao</div>
+        <div class="pub-venue"><strong>Journal of Physical Oceanography</strong> <span class="pub-year">2022</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves atmosphere">
+      <div class="pub-num">[40]</div>
+      <div class="pub-content">
+        <span class="pub-title">Ocean-wave-atmosphere interaction processes in a fully coupled modeling system</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, Ø. Breivik, and A. Rutgersson</div>
+        <div class="pub-venue"><strong>Journal of Advances in Modeling Earth Systems</strong>, 11(11), 3852–3874 <span class="pub-year">2019</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves atmosphere">
+      <div class="pub-num">[42]</div>
+      <div class="pub-content">
+        <span class="pub-title">Vertical profiles of wave-coherent momentum flux and velocity variances in the marine atmospheric boundary layer</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, T. Hristov, and A. Rutgersson</div>
+        <div class="pub-venue"><strong>Journal of Physical Oceanography</strong>, 48(3), 625–641 <span class="pub-year">2018</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="atmosphere waves">
+      <div class="pub-num">[43]</div>
+      <div class="pub-content">
+        <span class="pub-title">Atmospheric boundary layer turbulence closure scheme for wind-following swell conditions</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, A. Rutgersson, and E. Nilsson</div>
+        <div class="pub-venue"><strong>Journal of the Atmospheric Sciences</strong>, 74(7), 2363–2382 <span class="pub-year">2017</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves">
+      <div class="pub-num">[48]</div>
+      <div class="pub-content">
+        <span class="pub-title">Swell impact on wind stress and atmospheric mixing in a regional coupled atmosphere-wave model</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, A. Rutgersson, E. Sahlée, and X.G. Larséen</div>
+        <div class="pub-venue"><strong>Journal of Geophysical Research: Oceans</strong>, 121(7), 4633–4648 <span class="pub-year">2016</span></div>
+      </div>
+    </div>
+
+    <div class="pub-item" role="listitem" data-tags="waves">
+      <div class="pub-num">[49]</div>
+      <div class="pub-content">
+        <span class="pub-title">Upper-ocean mixing due to surface gravity waves</span>
+        <div class="pub-authors"><span class="me">Wu, L.*</span>, A. Rutgersson, and E. Sahlée</div>
+        <div class="pub-venue"><strong>Journal of Geophysical Research: Oceans</strong>, 120(12), 8210–8228 <span class="pub-year">2015</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="margin-top:1.2rem;font-size:0.88rem;color:var(--fg-muted)">
+    63 peer-reviewed publications in total. See full list on
+    <a href="https://scholar.google.com/citations?user=YOUR_ID" target="_blank" rel="noopener">Google Scholar</a> or
+    <a href="https://orcid.org/0000-0002-9900-9819" target="_blank" rel="noopener">ORCID</a>.
+  </p>
+</section>
+
+<!-- ============================================================
+     TEACHING
+     ============================================================ -->
+<hr class="section-sep">
+<section id="teaching" aria-label="Teaching">
+  <h2 class="section-heading">teaching</h2>
+
+  <div class="teaching-grid" role="list">
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code">1ME418 · 5 hp</div>
+      <div>
+        <div class="teaching-title">Atmospheric Radiation</div>
+        <div class="teaching-detail">Bachelor/Master course · Course Director · Uppsala University · Autumn 2023–</div>
+      </div>
+      <div class="teaching-role">Director</div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code">1ME410 · 10 hp</div>
+      <div>
+        <div class="teaching-title">Remote Sensing with Meteorological Applications</div>
+        <div class="teaching-detail">Bachelor course · Course Director · Uppsala University · Autumn 2019–</div>
+      </div>
+      <div class="teaching-role">Director</div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code">1ME405 · 15 hp</div>
+      <div>
+        <div class="teaching-title">Turbulence and Micrometeorology</div>
+        <div class="teaching-detail">Master course · Head Teacher · Uppsala University · Autumn 2020–</div>
+      </div>
+      <div class="teaching-role">Head Teacher</div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code">1ME401 · 15 hp</div>
+      <div>
+        <div class="teaching-title">Atmospheric Physics</div>
+        <div class="teaching-detail">Master course · Head Teacher · Uppsala University · Autumn 2019–</div>
+      </div>
+      <div class="teaching-role">Head Teacher</div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code">1ME406 · 10 hp</div>
+      <div>
+        <div class="teaching-title">Numerical Modelling of the Atmosphere</div>
+        <div class="teaching-detail">Master course · Course Director · Uppsala University · Spring 2019–</div>
+      </div>
+      <div class="teaching-role">Director</div>
+    </div>
+
+  </div>
+
+  <h3 style="margin-top:2rem;margin-bottom:1rem;font-size:1.05rem;color:var(--fg)">PhD Supervision</h3>
+  <div class="teaching-grid" role="list">
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code" style="color:var(--accent)">2025–</div>
+      <div>
+        <div class="teaching-title">Shijie Peng</div>
+        <div class="teaching-detail">Marginal ice zone · Uppsala University · Main supervisor</div>
+      </div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code" style="color:var(--accent)">2025–</div>
+      <div>
+        <div class="teaching-title">Moa Sjöberg</div>
+        <div class="teaching-detail">Marginal ice zone · Uppsala University · Main supervisor</div>
+      </div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code" style="color:var(--accent)">2024–</div>
+      <div>
+        <div class="teaching-title">Zhaohui Cheng</div>
+        <div class="teaching-detail">Wave-ice interactions · Uppsala University · Main supervisor</div>
+      </div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code">2021–2025</div>
+      <div>
+        <div class="teaching-title">Ting Lin</div>
+        <div class="teaching-detail">Polar lows in the Arctic · Uppsala University · Main supervisor</div>
+      </div>
+    </div>
+
+    <div class="teaching-item" role="listitem">
+      <div class="teaching-code" style="color:var(--accent)">2020–</div>
+      <div>
+        <div class="teaching-title">George Victor Emmanuel</div>
+        <div class="teaching-detail">Wave-ice interactions in marginal ice zones · Uppsala University · Main supervisor</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     RESEARCH PROJECTS / GRANTS
+     ============================================================ -->
+<hr class="section-sep">
+<section id="projects" aria-label="Research Grants">
+  <h2 class="section-heading">research grants</h2>
+
+  <div class="grant-list" role="list">
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Momentum flux conservation across the air-sea-ice interface within the marginal ice zone in Earth System Models</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Formas Career Grant · <strong>5.85M SEK</strong> · 2025–2028</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Turbulence fluxes across the air-sea-ice interface in the marginal ice zone and their influence on polar cyclones</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Swedish Research Council · <strong>4.16M SEK</strong> · 2025–2028</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">A stereo video system at Östergarnsholm station: exploring the influence of waves and sea surface heterogeneity on air–sea turbulent fluxes</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Crafoord Grant · <strong>290k SEK</strong> · 2026–2027</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Wave attenuation within the marginal ice zone: insight from multi-field campaigns</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Uppsala University International Sabbatical Grant · <strong>330k SEK</strong> · 2025</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Wave-Ice Interactions in the marginal ice zone</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Carl Tryggers Stiftelse · <strong>260k SEK</strong> · 2025–2027</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Greenhouse gas fluxes and earth system feedbacks (GreenFeedBack)</div>
+      <div class="grant-meta"><span class="grant-tag tag-co">Co-I</span> Horizon Europe · <strong>7.5M EUR</strong> · 2022–2026</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Improving offshore wind energy forecast by exploring the wave–air coupling processes</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Carl Tryggers Stiftelse · <strong>60k EUR</strong> · 2023–2025</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Polar lows under climate change: a multi-scale coupling chain over the Arctic</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Swedish Research Council · <strong>354k EUR</strong> · 2021–2024</div>
+    </div>
+
+    <div class="grant-item" role="listitem">
+      <div class="grant-title">Surface wave impact on air–sea interaction: from micro- to global-scale</div>
+      <div class="grant-meta"><span class="grant-tag tag-pi">PI</span> Formas Mobility Starting Grant · <strong>282.4k EUR</strong> · 2018–2020</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CV
+     ============================================================ -->
+<hr class="section-sep">
+<section id="cv" aria-label="Curriculum Vitae">
+  <h2 class="section-heading">curriculum vitae</h2>
+
+  <div class="cv-columns">
+
+    <!-- Left: Education & Experience -->
+    <div>
+      <div class="cv-block">
+        <h3>Education</h3>
+        <div class="cv-entries">
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Ph.D. Meteorology</div>
+              <div class="cv-period">2013–2017</div>
+            </div>
+            <div class="cv-place">Uppsala University, Sweden</div>
+            <div class="cv-note">Supervisors: Prof. Anna Rutgersson &amp; Erik Sahlée</div>
+            <div class="cv-note">Thesis: <em>Introducing Surface Gravity Waves into Earth System Models</em></div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">M.Sc. Engineering</div>
+              <div class="cv-period">2010–2013</div>
+            </div>
+            <div class="cv-place">Wuhan University of Technology, China</div>
+            <div class="cv-note">Thesis: <em>Ocean Models Adaptability Comparison in the South China Sea</em></div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">B.A. Engineering</div>
+              <div class="cv-period">2006–2010</div>
+            </div>
+            <div class="cv-place">Wuhan University of Technology, China</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block" style="margin-top:1.8rem">
+        <h3>Academic Positions</h3>
+        <div class="cv-entries">
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Associate Professor (Senior Lecturer)</div>
+              <div class="cv-period">2022–</div>
+            </div>
+            <div class="cv-place">Uppsala University, Sweden</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Visiting Scholar</div>
+              <div class="cv-period">2025 (Jan–Jun)</div>
+            </div>
+            <div class="cv-place">University of Reading, UK</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Assistant Professor (Associate Senior Lecturer)</div>
+              <div class="cv-period">2019–2022</div>
+            </div>
+            <div class="cv-place">Uppsala University, Sweden</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Visiting Scholar</div>
+              <div class="cv-period">2019 (Jan–Apr)</div>
+            </div>
+            <div class="cv-place">University of Miami, USA</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Researcher</div>
+              <div class="cv-period">2017–2018</div>
+            </div>
+            <div class="cv-place">Uppsala University, Sweden</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Postdoc (80%)</div>
+              <div class="cv-period">2017–2018</div>
+            </div>
+            <div class="cv-place">Swedish Meteorological and Hydrological Institute (SMHI), Sweden</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Visiting Scholar</div>
+              <div class="cv-period">2016 (Aug–Dec)</div>
+            </div>
+            <div class="cv-place">Johns Hopkins University, Baltimore, USA</div>
+            <div class="cv-note">Advisor: Dr. Tihomir Hristov</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-entry-header">
+              <div class="cv-role">Visiting Scholar</div>
+              <div class="cv-period">2017 (Aug–Sep)</div>
+            </div>
+            <div class="cv-place">Norwegian Meteorological Institute, Bergen, Norway</div>
+            <div class="cv-note">Advisor: Prof. Øyvind Breivik</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Awards & Service -->
+    <div>
+      <div class="cv-block">
+        <h3>Selected Awards</h3>
+        <div class="awards-list">
+          <div class="award-item">
+            <div class="award-name">Excellent Editor, Ocean-Land-Atmosphere Research</div>
+            <div class="award-year">2026</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">Finn Malmgrens stipendiestiftelse</div>
+            <div class="award-year">2021</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">Chinese Government Award for Outstanding Self-financed Students Abroad</div>
+            <div class="award-year">2018</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">Wallenberg Scholarship</div>
+            <div class="award-year">2017</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">Liljewalch Scholarship (three times)</div>
+            <div class="award-year">2016–2018</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">Excellent Master Thesis, Hubei Province</div>
+            <div class="award-year">2014</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">Best Paper Award, Asia Navigation Conference</div>
+            <div class="award-year">2011</div>
+          </div>
+          <div class="award-item">
+            <div class="award-name">1st Prize, National Competition of Transport Science and Technology</div>
+            <div class="award-year">2009</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block" style="margin-top:1.8rem">
+        <h3>Editorial &amp; Service</h3>
+        <div class="cv-entries">
+          <div class="cv-entry">
+            <div class="cv-role" style="font-size:0.88rem">Editorial Board Member</div>
+            <div class="cv-place">Ocean-Land-Atmosphere Research (2023–), Atmosphere (2021–)</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-role" style="font-size:0.88rem">Guest Editor</div>
+            <div class="cv-place">Ocean Modelling; Frontiers in Marine Science; Journal of Marine Science and Engineering</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-role" style="font-size:0.88rem">Grant Reviewer</div>
+            <div class="cv-place">Research Grants Council (Hong Kong); NERC (UK); National Research and Development Agency (Chile); Research Ireland</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-role" style="font-size:0.88rem">Reviewer</div>
+            <div class="cv-place">Nature Communications · GRL · JGR-Oceans · JGR-Atmosphere · J. Climate · JAMES · Ocean Modelling · Boundary-Layer Meteorology · The Cryosphere · and more</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-role" style="font-size:0.88rem">PhD Examiner</div>
+            <div class="cv-place">External examiner for 5 PhD students</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block" style="margin-top:1.8rem">
+        <h3>Invited Seminars (selected)</h3>
+        <div class="awards-list">
+          <div class="award-item"><div class="award-name">ECMWF, Bonn, Germany</div><div class="award-year">2025</div></div>
+          <div class="award-item"><div class="award-name">University of Reading, UK</div><div class="award-year">2025</div></div>
+          <div class="award-item"><div class="award-name">Polar Research Institute of China</div><div class="award-year">2024</div></div>
+          <div class="award-item"><div class="award-name">University of Miami, USA</div><div class="award-year">2024</div></div>
+          <div class="award-item"><div class="award-name">Woods Hole Oceanographic Institution, USA</div><div class="award-year">2023</div></div>
+          <div class="award-item"><div class="award-name">University of Cape Town, South Africa</div><div class="award-year">2022</div></div>
+          <div class="award-item"><div class="award-name">University of Miami, USA</div><div class="award-year">2019</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- .page -->
+</main>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 Lichuan Wu · Department of Earth Sciences, Uppsala University</span>
+    <span>
+      <a href="mailto:lichuan.wu@geo.uu.se">lichuan.wu@geo.uu.se</a>
+      · Last updated October 2026
+    </span>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+// ============================================================
+// Theme toggle
+// ============================================================
+const root = document.documentElement;
+const btn  = document.getElementById('theme-toggle');
+
+function getTheme() {
+  try { return localStorage.getItem('theme') || 'system'; }
+  catch { return 'system'; }
+}
+function setTheme(t) {
+  try { localStorage.setItem('theme', t); } catch {}
+  root.setAttribute('data-theme-setting', t);
+  if (t === 'dark')   { root.setAttribute('data-theme', 'dark'); }
+  else if (t === 'light') { root.setAttribute('data-theme', 'light'); }
+  else                { root.removeAttribute('data-theme'); }
+}
+
+// Cycle: system → dark → light → system
+function cycleTheme() {
+  const cur = getTheme();
+  const next = cur === 'system' ? 'dark' : cur === 'dark' ? 'light' : 'system';
+  setTheme(next);
+}
+
+btn.addEventListener('click', cycleTheme);
+setTheme(getTheme());
+
+// ============================================================
+// Hamburger menu
+// ============================================================
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+});
+
+// Close on nav click
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  });
+});
+
+// ============================================================
+// Active nav link on scroll
+// ============================================================
+const sections = document.querySelectorAll('section[id]');
+const navLinkEls = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinkEls.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// ============================================================
+// Back to top
+// ============================================================
+const btt = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ============================================================
+// Publication filter
+// ============================================================
+const filterBtns = document.querySelectorAll('.filter-btn');
+const pubItems   = document.querySelectorAll('.pub-item');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    pubItems.forEach(item => {
+      const tags = item.dataset.tags || '';
+      item.style.display = (f === 'all' || tags.includes(f)) ? '' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

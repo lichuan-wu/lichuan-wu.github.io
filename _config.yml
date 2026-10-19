@@ -1,0 +1,277 @@
+# -----------------------------------------------------------------------------
+# Site
+# -----------------------------------------------------------------------------
+
+title: # blank uses full name
+first_name: Lichuan
+middle_name:
+last_name: Wu
+contact_note:
+description: >
+  Associate Professor in Meteorology at Uppsala University.
+  Air–sea interaction, ocean surface waves, marginal ice zone, and polar meteorology.
+footer_text: >
+  Department of Earth Sciences, Uppsala University. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> and the
+  <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+keywords: air-sea interaction, ocean surface waves, marginal ice zone, polar meteorology, Earth System Models, Uppsala University, atmospheric boundary layer, swell waves
+lang: en
+icon: 🌊
+
+url: https://wulichuan0704.github.io
+baseurl:
+
+# -----------------------------------------------------------------------------
+# Layout
+# -----------------------------------------------------------------------------
+
+navbar_fixed: true
+footer_fixed: true
+back_to_top: true
+last_updated: false
+max_width: 930px
+
+# -----------------------------------------------------------------------------
+# Open Graph & Schema.org
+# -----------------------------------------------------------------------------
+# Preview cards for links shared on Bluesky, LinkedIn, Slack and Mastodon.
+
+serve_og_meta: true
+serve_schema_org: true
+og_image: /assets/img/og-preview.png
+
+# -----------------------------------------------------------------------------
+# Optional features
+# -----------------------------------------------------------------------------
+
+enable_math: true # MathJax typesetting
+enable_darkmode: true # light/dark/system theme switch in the navbar
+enable_medium_zoom: true # click to enlarge images
+enable_progressbar: true # scroll-position bar under the navbar
+enable_publication_thumbnails: true
+enable_google_verification: false
+google_site_verification:
+
+# -----------------------------------------------------------------------------
+# Collections
+# -----------------------------------------------------------------------------
+# news items are rendered inline inside the news table on / and /news/, so they
+# get no standalone pages: output: false. A news item is a file named
+# YYYY-MM-DD-slug.md in _news/ whose only front matter is its date.
+
+collections:
+  news:
+    output: false
+  projects:
+    output: true
+    permalink: /projects/:name/
+  teachings:
+    output: true
+    permalink: /teachings/:name/
+
+# -----------------------------------------------------------------------------
+# Jekyll
+# -----------------------------------------------------------------------------
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+
+include: ["_pages"]
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - bin/
+  - package.json
+  - package-lock.json
+  - purgecss.config.js
+  - vendor
+  - Claude outputs
+  # Images left over from the template this site was forked from. Not used;
+  # safe to delete from the repository.
+  - assets/img/people/
+  - assets/img/publication_preview/
+  - assets/img/NOW_demo.png
+  - assets/img/sectors.jpg
+  - assets/img/odacell.png
+  - assets/img/matrix_as_graph.png
+  - assets/video/
+keep_files:
+  - CNAME
+  - .nojekyll
+
+plugins:
+  - jekyll-3rd-party-libraries
+  - jekyll-email-protect
+  - jekyll-feed
+  - jekyll-imagemagick
+  - jekyll-link-attributes
+  - jekyll-minifier
+  - jekyll-regex-replace
+  - jekyll/scholar
+  - jekyll-sitemap
+  - jekyll-socials
+
+defaults:
+  - scope:
+      path: "assets"
+    values:
+      sitemap: false
+
+sass:
+  style: compressed
+  sourcemap: never
+
+jekyll-minifier:
+  compress_javascript: false
+  compress_css: false
+  compress_json: false
+  remove_spaces_inside_tags: false
+  remove_multi_spaces: false
+  remove_comments: false
+  remove_intertag_spaces: false
+  remove_quotes: false
+  simple_doctype: false
+  remove_script_attributes: false
+  remove_style_attributes: false
+  remove_link_attributes: false
+  remove_form_attributes: false
+  remove_input_attributes: false
+  remove_http_protocol: false
+  remove_https_protocol: false
+  preserve_line_breaks: true
+  simple_boolean_attributes: false
+  compress_sass: false
+  exclude: ["robots.txt"]
+
+# -----------------------------------------------------------------------------
+# Jekyll Scholar
+# -----------------------------------------------------------------------------
+
+scholar:
+  last_name: [Wu]
+  first_name: [Lichuan, L.]
+
+  style: apa
+  locale: en
+
+  source: /_bibliography/
+  bibliography: papers.bib
+  bibliography_template: bib
+  bibtex_filters: [latex, smallcaps, superscript]
+
+  replace_strings: true
+  join_strings: true
+
+  details_dir: bibliography
+  details_link: Details
+
+  query: "@*"
+  group_by: year
+  group_order: descending
+
+bib_search: true
+
+# BibTeX keys used internally by the templates, hidden from the rendered entry.
+filtered_bibtex_keywords:
+  [
+    abbr,
+    abstract,
+    additional_info,
+    annotation,
+    arxiv,
+    award,
+    award_name,
+    bibtex_show,
+    code,
+    eprint,
+    google_scholar_id,
+    hal,
+    html,
+    pdf,
+    pmid,
+    poster,
+    preview,
+    selected,
+    slides,
+    supp,
+    video,
+    website,
+  ]
+
+# Authors beyond this count are revealed on click.
+max_author_limit: 3
+more_authors_animation_delay: 10
+
+# -----------------------------------------------------------------------------
+# Jekyll Link Attributes
+# -----------------------------------------------------------------------------
+
+external_links:
+  enabled: true
+  rel: external nofollow noopener
+  target: _blank
+  exclude:
+
+# -----------------------------------------------------------------------------
+# Responsive WebP images
+# -----------------------------------------------------------------------------
+
+imagemagick:
+  enabled: true
+  widths:
+    - 480
+    - 800
+    - 1400
+  input_directories:
+    - assets/img/
+  input_formats:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+  output_formats:
+    webp: "-auto-orient -quality 85"
+
+lazy_loading_images: true
+
+# -----------------------------------------------------------------------------
+# Third-party libraries
+# -----------------------------------------------------------------------------
+
+third_party_libraries:
+  download: false
+  google_fonts:
+    url:
+      fonts: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&display=swap"
+  jquery:
+    integrity:
+      js: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    url:
+      js: "https://cdn.jsdelivr.net/npm/jquery@{{version}}/dist/jquery.min.js"
+    version: "3.6.0"
+  mathjax:
+    integrity:
+      js: "sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="
+    local:
+      fonts: "output/chtml/fonts/woff-v2/"
+    url:
+      fonts: "https://cdn.jsdelivr.net/npm/mathjax@{{version}}/es5/output/chtml/fonts/woff-v2/"
+      js: "https://cdn.jsdelivr.net/npm/mathjax@{{version}}/es5/tex-mml-chtml.js"
+    version: "3.2.2"
+  medium_zoom:
+    integrity:
+      js: "sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc="
+    url:
+      js: "https://cdn.jsdelivr.net/npm/medium-zoom@{{version}}/dist/medium-zoom.min.js"
+    version: "1.1.0"

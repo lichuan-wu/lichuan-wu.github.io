@@ -1,0 +1,29 @@
+{% if site.teachings %}
+  <div class="courses">
+    {% assign sorted_courses = site.teachings | sort: 'year' | reverse | group_by: 'year' %}
+    {% for year_group in sorted_courses %}
+      {% assign year_courses = year_group.items | sort: 'title' %}
+      {% for course in year_courses %}
+        <div class="course-item">
+          <h3 class="course-title">
+            <a href="{{ course.url | relative_url }}">{{ course.title }}</a>
+          </h3>
+          {% if course.years or course.role %}
+            <p class="course-meta">
+              {{ course.years -}}
+              {%- if course.years and course.role %} &middot; {% endif -%}
+              {{- course.role }}
+            </p>
+          {% endif %}
+          {% if course.description %}
+            <div class="course-description">
+              {{ course.description | markdownify }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No courses available yet.</p>
+{% endif %}

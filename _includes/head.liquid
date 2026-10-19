@@ -1,0 +1,67 @@
+<!-- Metadata, Open Graph and Schema.org -->
+{% include metadata.liquid %}
+
+<!--
+  Content Security Policy, naming the exact third-party hosts the site loads
+  from. img-src was permissive only for the shields.io citation badge, which the
+  site no longer renders, so no external image remains and it is now closed to
+  data: and same origin. Add a host here if a page ever needs a remote image.
+  'unsafe-inline' is required by the inline theme and back-to-top initializers.
+-->
+<meta
+  http-equiv="Content-Security-Policy"
+  content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+    style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com;
+    font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net;
+    img-src 'self' data:;
+    media-src 'self';
+    frame-src https:;
+    connect-src 'self' https:;
+  "
+>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{{ '/assets/css/bootstrap.min.css' | relative_url | bust_file_cache }}">
+
+<!-- Fonts & icons -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/academicons.min.css' | relative_url | bust_file_cache }}">
+<link rel="stylesheet" href="{{ site.third_party_libraries.google_fonts.url.fonts }}">
+
+<!-- Code syntax highlighting -->
+<link
+  rel="stylesheet"
+  href="{{ '/assets/css/jekyll-pygments-themes-github.css' | relative_url | bust_file_cache }}"
+  media=""
+  id="highlight_theme_light"
+>
+
+<!-- Favicon -->
+{% if site.icon.size <= 4 %}
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{ site.icon }}</text></svg>"
+  >
+{% elsif site.icon != blank %}
+  <link rel="icon" href="{{ site.icon | prepend: '/assets/img/' | relative_url | bust_file_cache }}">
+{% endif %}
+
+<!-- Site styles -->
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url | bust_css_cache }}">
+<link rel="canonical" href="{{ page.url | replace: 'index.html', '' | absolute_url }}">
+
+{% if site.enable_darkmode %}
+  <!-- Dark mode. Loaded synchronously so the theme is set before first paint. -->
+  <script src="{{ '/assets/js/theme.js' | relative_url | bust_file_cache }}"></script>
+  <link
+    rel="stylesheet"
+    href="{{ '/assets/css/jekyll-pygments-themes-native.css' | relative_url | bust_file_cache }}"
+    media="none"
+    id="highlight_theme_dark"
+  >
+  <script>
+    initTheme();
+  </script>
+{% endif %}

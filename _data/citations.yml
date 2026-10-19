@@ -1,0 +1,6 @@
+# Refreshed by bin/update_scholar_citations.py from the Google Scholar profile
+# in _data/socials.yml. Nothing on the site reads this file; it only feeds
+# new-paper detection in bin/sync_publications.py.
+metadata:
+  last_updated: null
+papers: {}

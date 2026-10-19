@@ -1,0 +1,59 @@
+<!-- jQuery & Bootstrap -->
+<script
+  src="{{ site.third_party_libraries.jquery.url.js }}"
+  integrity="{{ site.third_party_libraries.jquery.integrity.js }}"
+  crossorigin="anonymous"
+></script>
+<script src="{{ '/assets/js/bootstrap.bundle.min.js' | relative_url | bust_file_cache }}"></script>
+
+<!-- Site scripts -->
+<script src="{{ '/assets/js/no_defer.js' | relative_url | bust_file_cache }}"></script>
+<script defer src="{{ '/assets/js/common.js' | relative_url | bust_file_cache }}"></script>
+<script defer src="{{ '/assets/js/copy_code.js' | relative_url | bust_file_cache }}"></script>
+
+{% if site.enable_medium_zoom %}
+  <!-- Medium-style image zoom -->
+  <script
+    defer
+    src="{{ site.third_party_libraries.medium_zoom.url.js }}"
+    integrity="{{ site.third_party_libraries.medium_zoom.integrity.js }}"
+    crossorigin="anonymous"
+  ></script>
+  <script defer src="{{ '/assets/js/zoom.js' | relative_url | bust_file_cache }}"></script>
+{% endif %}
+
+{% if site.enable_progressbar %}
+  <!-- Scrolling progress bar -->
+  <script defer src="{{ '/assets/js/progress-bar.js' | relative_url | bust_file_cache }}"></script>
+{% endif %}
+
+{% if site.back_to_top %}
+  <!-- Back to top -->
+  <script src="{{ '/assets/js/vanilla-back-to-top.min.js' | relative_url | bust_file_cache }}"></script>
+  <script>
+    addBackToTop();
+  </script>
+{% endif %}
+
+{%- comment -%}
+  MathJax is 1.1 MB, so load it only on pages that actually typeset something:
+  when the rendered page contains display math or an escaped inline delimiter, or
+  when the page asks for it with `math: true`. A bare `$` is not a usable signal
+  because the templates emit jQuery in inline event handlers.
+{%- endcomment -%}
+{%- assign needs_math = page.math -%}
+{%- if content contains '$$' or content contains '\(' or content contains '\[' -%}
+  {%- assign needs_math = true -%}
+{%- endif -%}
+{% if site.enable_math and needs_math %}
+  <!-- MathJax -->
+  <script src="{{ '/assets/js/mathjax-setup.js' | relative_url | bust_file_cache }}"></script>
+  <script
+    defer
+    type="text/javascript"
+    id="MathJax-script"
+    src="{{ site.third_party_libraries.mathjax.url.js }}"
+    integrity="{{ site.third_party_libraries.mathjax.integrity.js }}"
+    crossorigin="anonymous"
+  ></script>
+{% endif %}

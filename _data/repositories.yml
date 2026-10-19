@@ -1,0 +1,9 @@
+# Open-source code, rendered by _pages/repositories.md (currently unpublished).
+# To show a code page, add entries below and remove `published: false` from
+# _pages/repositories.md:
+#
+#   - name: github-user/repository
+#     description: One sentence on what the code does.
+#     paper: Author et al., Journal, Year   # optional
+
+repositories: []

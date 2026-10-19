@@ -1,0 +1,83 @@
+# Group members, rendered by _pages/people.md.
+# `image` is optional: put a square photo in assets/img/people/ and add
+# `image: filename.jpg` to show it.
+
+postdocs:
+  - name: "Zheng Wei"
+    years: "2026–"
+    role: "main supervisor"
+    description: "Air–sea–ice interaction"
+
+phd_students:
+  - name: "Shijie Peng"
+    years: "2025–"
+    role: "main supervisor"
+    description: "Marginal ice zone"
+  - name: "Moa Sjöberg"
+    years: "2025–"
+    role: "main supervisor"
+    description: "Marginal ice zone"
+  - name: "Zhaohui Cheng"
+    years: "2024–"
+    role: "main supervisor"
+    description: "Wave–ice interactions"
+  - name: "George Victor Emmanuel"
+    years: "2020–"
+    role: "main supervisor"
+    description: "Wave–ice interactions in marginal ice zones"
+
+visiting:
+  - name: "Yu Gao"
+    years: "2025–2026"
+    affiliation: "Zhejiang University"
+    role: "main advisor"
+
+alumni_phd:
+  - name: "Ting Lin"
+    years: "2021–2025"
+    role: "main supervisor"
+    affiliation: "Uppsala University"
+    topic: "Polar lows in the Arctic"
+  - name: "Ferran Lopez Marti"
+    years: "2021–2025"
+    role: "co-supervisor"
+    affiliation: "Uppsala University"
+    topic: "Atmospheric rivers"
+  - name: "Wenli Qiao"
+    years: "2019–2022"
+    role: "co-supervisor"
+    affiliation: "Zhejiang University"
+    topic: "Momentum flux balance at the air–sea interface"
+  - name: "Danqin Ren"
+    years: "2018–2021"
+    role: "co-supervisor"
+    affiliation: "Uppsala University"
+    topic: "Surface wave impact on air–sea interaction"
+
+alumni_postdoc:
+  - name: "Biao Zhao"
+    years: "2024–2026"
+    role: "main supervisor"
+
+alumni_visiting:
+  - name: "Hongxun Huang"
+    years: "2022–2023"
+    affiliation: "Wuhan University of Technology"
+  - name: "Xin Peng"
+    years: "2020–2021"
+    affiliation: "Wuhan University of Technology"
+  - name: "Ting Zhang"
+    years: "2018–2019"
+    affiliation: "Zhejiang University"
+    topic: "Impact of sea surface on the wave boundary layer"
+
+alumni_msc:
+  - name: "Georgios Mastrogiorgos"
+    title: "A numerical case study of the impact of wind farm wakes on ocean surface waves in the Baltic Sea"
+    year: 2025
+  - name: "Di Zhang"
+    title: "Response of polar lows' development to the oceanic temperature profile"
+    year: 2024
+  - name: "Julia Jeworrek"
+    title: "Numerical modelling of convective snow bands in the Baltic Sea area"
+    year: 2016
