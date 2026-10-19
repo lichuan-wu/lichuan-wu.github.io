@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://wulichuan0704.github.io/sitemap.xml
+Sitemap: https://lichuan-wu.github.io/sitemap.xml
