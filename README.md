@@ -1,8 +1,8 @@
-# wulichuan0704.github.io
+# lichuan-wu.github.io
 
 Personal research website for Lichuan Wu, Associate Professor (Docent) in
 Meteorology at the Department of Earth Sciences, Uppsala University. Live at
-<https://wulichuan0704.github.io>.
+<https://lichuan-wu.github.io>.
 
 Built with [Jekyll](https://jekyllrb.com/) on a reduced fork of the
 [al-folio](https://github.com/alshedivat/al-folio) theme (via
@@ -12,7 +12,7 @@ and publishes `_site` to the `gh-pages` branch.
 
 ## Publishing on GitHub Pages
 
-1. Create a public repository named **`wulichuan0704.github.io`** on GitHub.
+1. Create a public repository named **`lichuan-wu.github.io`** on GitHub.
 2. Push this folder to its `main` branch.
 3. In the repository, open **Settings → Actions → General** and allow
    _Read and write permissions_ for workflows.
