@@ -1,6 +1,327 @@
-# Refreshed by bin/update_scholar_citations.py from the Google Scholar profile
-# in _data/socials.yml. Nothing on the site reads this file; it only feeds
-# new-paper detection in bin/sync_publications.py.
 metadata:
-  last_updated: null
-papers: {}
+  last_updated: '2026-10-26'
+papers:
+  4SiVDYkAAAAJ:-LBJnDjEUMIC:
+    citations: 32
+    title: Coupled regional Earth system modeling in the Baltic Sea region
+    year: '2021'
+  4SiVDYkAAAAJ:-e1qr6N6M9MC:
+    citations: 10
+    title: "Optimizing the routing of ship\u2019s tropical cyclone avoidance based on the numerical forecasts"
+    year: '2013'
+  4SiVDYkAAAAJ:0ju6dEALV5wC:
+    citations: 2
+    title: Role of source terms in parameterizing wave decay in the marginal ice zones
+    year: '2022'
+  4SiVDYkAAAAJ:1vh4mnD7xAIC:
+    citations: 3
+    title: Influence of mesoscale sea surface temperature anomaly on Polar Lows
+    year: '2025'
+  4SiVDYkAAAAJ:2oMuTuaXnloC:
+    citations: 2
+    title: "Numerical Weather Prediction Model Coupling\u2014Strategies, Challenges, and Outlook"
+    year: '2026'
+  4SiVDYkAAAAJ:3xcwCnWquLEC:
+    citations: 3
+    title: Development of Polar Lows in Future Climate Scenarios over the Barents Sea
+    year: '2024'
+  4SiVDYkAAAAJ:6LI0FKmQuhEC:
+    citations: 1
+    title: Anticyclonic Component of Eddy Dipoles Traps Sea Ice Within the Marginal Ice Zone
+    year: '2025'
+  4SiVDYkAAAAJ:6XuKD3u7GOoC:
+    citations: 70
+    title: A sampling method for calculating regional ship emission inventories
+    year: '2020'
+  4SiVDYkAAAAJ:6biGW3np0psC:
+    citations: 9
+    title: Green routing design in short seas
+    year: '2017'
+  4SiVDYkAAAAJ:6daZS1cS2l8C:
+    citations: 8
+    title: "Spatial patterns of short\u2010term extreme precipitation and their causes"
+    year: '2024'
+  4SiVDYkAAAAJ:7iKzEIWBYlQC:
+    citations: 5
+    title: Ocean surface waves impact on global air-sea CO2 flux
+    year: '2025'
+  4SiVDYkAAAAJ:CQrscp367IIC:
+    citations: 12
+    title: Mapping coastal upwelling in the Baltic Sea from 2002 to 2020 using remote sensing data
+    year: '2022'
+  4SiVDYkAAAAJ:CRQ797xmLJIC:
+    citations: 1
+    title: "\u6D59\u6C5F\u7701\u6C34\u8DEF\u53F0\u98CE\u707E\u5BB3\u65F6\u7A7A\u5206\u5E03\u7279\u5F81\u5206\u6790"
+    year: '2012'
+  4SiVDYkAAAAJ:ChsjQIg5EFEC:
+    citations: 65
+    title: A sensitivity study of the WRF model in offshore wind modeling over the Baltic Sea
+    year: '2021'
+  4SiVDYkAAAAJ:CxegcQ4u50YC:
+    citations: 36
+    title: "Using land-based stations for air\u2013sea interaction studies"
+    year: '2020'
+  4SiVDYkAAAAJ:DnwG-TGCLFkC:
+    citations: 3
+    title: Identification and detection of high NOx emitting inland ships using multi-source shore-based monitoring data
+    year: '2024'
+  4SiVDYkAAAAJ:EpUiTTZsFn8C:
+    citations: 0
+    title: "\u6CBF\u6D77\u6E2F\u53E3\u901A\u822A\u73AF\u5883\u70ED\u5E26\u6C14\u65CB\u707E\u5BB3\u9884\u8BC4\u4F30\u6A21\u578B\u7814\u7A76"
+    year: '2011'
+  4SiVDYkAAAAJ:F2VeH06lQh8C:
+    citations: 0
+    title: Characteristics of wind zone climate change in the North Pacific Ocean route
+    year: '2014'
+  4SiVDYkAAAAJ:FP-YCU5gdjEC:
+    citations: 0
+    title: 'Comparison of air-sea momentum parameterizations in atmosphere-wave coupled system: storm cases study'
+    year: Unknown Year
+  4SiVDYkAAAAJ:FjmlLC3huY4C:
+    citations: 1
+    title: "\u957F\u6C5F\u4E2D\u6E38\u901A\u822A\u73AF\u5883\u98CE\u573A\u6C14\u5019\u53D8\u5316\u7279\u5F81\u53CA\u5176\u822A\u8FD0\u5F71\u54CD\u5206\u6790"
+    year: '2012'
+  4SiVDYkAAAAJ:GK0_TXnxOL4C:
+    citations: 4
+    title: Convective snow bands over the Baltic Sea in an ensemble of regional climate scenarios
+    year: Unknown Year
+  4SiVDYkAAAAJ:GjQuYujAsN4C:
+    citations: 9
+    title: Optimal site selection for the remote-monitoring sulfur content of ship fuels in ports
+    year: '2022'
+  4SiVDYkAAAAJ:IjbvboqL_eAC:
+    citations: 7
+    title: Modeling the vulnerability of waterway networks
+    year: '2014'
+  4SiVDYkAAAAJ:ItgTnG0mAXQC:
+    citations: 0
+    title: Impact of surface gravity waves on air-sea fluxes and upper-ocean mixing
+    year: '2016'
+  4SiVDYkAAAAJ:IxBLoz_EsGYC:
+    citations: 0
+    title: Developing a swell-dependent surface roughness length for atmosphere-wave-ocean coupled models
+    year: '2014'
+  4SiVDYkAAAAJ:K0fIQ6b0NmsC:
+    citations: 15
+    title: 'Wind stress modification by offshore wind turbines: A numerical study of wave blocking impacts'
+    year: '2024'
+  4SiVDYkAAAAJ:KRujTB8-hGMC:
+    citations: 2
+    title: Air-Sea Interaction and Oceanic Extremes
+    year: '2024'
+  4SiVDYkAAAAJ:M9BB6krhjY8C:
+    citations: 13
+    title: Future changes in compound explosive cyclones and atmospheric rivers in the North Atlantic
+    year: '2025'
+  4SiVDYkAAAAJ:MZHH0dlIDt0C:
+    citations: 12
+    title: Exploring Carbon Emission Reduction in Inland Port Ship Based on a Multi-Scenario Model
+    year: '2024'
+  4SiVDYkAAAAJ:N3pez2oqSB0C:
+    citations: 1
+    title: A numerical case study of the impact of wind farm wakes on ocean surface waves in the Baltic Sea
+    year: '2025'
+  4SiVDYkAAAAJ:NAkivslCrNUC:
+    citations: 0
+    title: Numerical modelling of convective snow bands in the Baltic Sea area using atmosphere-ocean-wave coupled model systems
+    year: '2016'
+  4SiVDYkAAAAJ:Nw5Pwe77XXAC:
+    citations: 8
+    title: "Impact of wave breaking on upper\u2010ocean turbulence"
+    year: '2017'
+  4SiVDYkAAAAJ:OJBCU0UFcNkC:
+    citations: 27
+    title: 'Remote detection sulfur content in fuel oil used by ships in emission control areas: A case study of the Yantian model in Shenzhen'
+    year: '2021'
+  4SiVDYkAAAAJ:OjREftYh6kAC:
+    citations: 30
+    title: Characteristics of convective snow bands along the Swedish east coast
+    year: '2017'
+  4SiVDYkAAAAJ:PicmXY_cuE0C:
+    citations: 5
+    title: The redistribution of air-sea momentum and turbulent kinetic energy fluxes by ocean surface gravity waves
+    year: '2022'
+  4SiVDYkAAAAJ:QC_fukgq8lwC:
+    citations: 11
+    title: 'Progress analysis of multi-dimensional perspective research on green ships: A knowledge graph-based approach'
+    year: '2025'
+  4SiVDYkAAAAJ:QDEWnZBrHwAC:
+    citations: 0
+    title: "1998 \u5E74~ 2007 \u5E74\u70ED\u5E26\u6C14\u65CB\u5BF9\u6211\u56FD\u6CBF\u6D77\u5546\u8239\u822A\u7EBF\u7684\u5F71\u54CD\u5206\u6790"
+    year: '2009'
+  4SiVDYkAAAAJ:RaRNlNDkcy8C:
+    citations: 0
+    title: Characteristics of Convective Snow Bands in the Baltic Sea Area
+    year: Unknown Year
+  4SiVDYkAAAAJ:STWYWLtSq6gC:
+    citations: 0
+    title: "\u5317\u592A\u5E73\u6D0B\u5927\u6D0B\u822A\u8DEF\u7684\u98CE\u573A\u6C14\u5019\u53D8\u5316\u7279\u5F81"
+    year: '2014'
+  4SiVDYkAAAAJ:SVv6S0jguFwC:
+    citations: 9
+    title: "Impact of sea spray\u2010mediated heat fluxes on polar low development"
+    year: '2024'
+  4SiVDYkAAAAJ:T64LSalLz9oC:
+    citations: 2
+    title: "\u5357\u6D77\u533A\u57DF\u6D77\u6D0B\u6A21\u5F0F\u9002\u5E94\u6027\u6BD4\u8F83\u5206\u6790\u53CA\u6539\u8FDB"
+    year: '2013'
+  4SiVDYkAAAAJ:TKTY8N1AUUAC:
+    citations: 0
+    title: Introducing Surface Gravity Waves into Earth System Models
+    year: '2017'
+  4SiVDYkAAAAJ:Uwzdpet-joYC:
+    citations: 3
+    title: "\u6D59\u6C5F\u7701\u6C34\u8DEF\u4EA4\u901A\u7CFB\u7EDF\u53F0\u98CE\u707E\u5BB3\u8106\u5F31\u6027\u5206\u6790"
+    year: '2012'
+  4SiVDYkAAAAJ:V0QqM0Py3VsC:
+    citations: 0
+    title: Modelling storm development and the impact when introducing waves, sea spray and heat fluxes
+    year: '2015'
+  4SiVDYkAAAAJ:V1pH50uuazEC:
+    citations: 0
+    title: The impact of polar lows on the underlying ocean varies significantly by location
+    year: '2025'
+  4SiVDYkAAAAJ:VJOaslTFpLQC:
+    citations: 0
+    title: "\u57FA\u4E8E\u4FE1\u606F\u6269\u6563\u7406\u8BBA\u7684\u6D59\u6C5F\u901A\u822A\u73AF\u5883\u98CE\u573A\u98CE\u9669\u5206\u6790"
+    year: '2011'
+  4SiVDYkAAAAJ:VyewGSb6xwwC:
+    citations: 42
+    title: Atmospheric boundary layer turbulence closure scheme for wind-following swell conditions
+    year: '2017'
+  4SiVDYkAAAAJ:WgBxaE7EUScC:
+    citations: 2
+    title: "\u70ED\u5E26\u6C14\u65CB\u5BF9\u4E2D\u56FD\u6CBF\u6D77\u822A\u7EBF\u5F71\u54CD\u7684\u65F6\u7A7A\u5206\u5E03\u89C4\u5F8B\u5206\u6790"
+    year: '2010'
+  4SiVDYkAAAAJ:XfMaBeGYgSgC:
+    citations: 5
+    title: "\u6D59\u6C5F\u6CBF\u6D77\u901A\u822A\u73AF\u5883\u98CE\u573A\u8981\u7D20\u6C14\u5019\u53D8\u5316\u7279\u5F81\u5206\u6790"
+    year: '2010'
+  4SiVDYkAAAAJ:YW75zINC-7AC:
+    citations: 27
+    title: Vertical Profiles of Wave-Coherent Momentum Flux and Velocity Variances in the Marine Atmospheric Boundary Layer
+    year: '2018'
+  4SiVDYkAAAAJ:ZjmTu7HDCaEC:
+    citations: 50
+    title: The impact of waves and sea spray on modelling storm track and development
+    year: '2015'
+  4SiVDYkAAAAJ:_oX8UoZSOBoC:
+    citations: 10
+    title: "Momentum flux balance at the air\u2010sea interface"
+    year: '2021'
+  4SiVDYkAAAAJ:ahKOoLCzQxcC:
+    citations: 11
+    title: "A Numerical Study of Tropical Cyclone and Ocean Responses to Air\u2010Sea Momentum Flux at High Winds"
+    year: '2024'
+  4SiVDYkAAAAJ:bF3sBmdg0HEC:
+    citations: 0
+    title: Moisture sources throughout the life-cycle of an Extreme Atmospheric River
+    year: '2024'
+  4SiVDYkAAAAJ:bGIpCNGh66kC:
+    citations: 6
+    title: Safe-economical route model of a ship to avoid tropical cyclones using dynamic forecast environment
+    year: '2014'
+  4SiVDYkAAAAJ:bjlTY1bLvvcC:
+    citations: 32
+    title: Effect of atmosphere-wave-ocean/ice interactions on a polar low simulation over the Barents Sea
+    year: '2021'
+  4SiVDYkAAAAJ:btULBOGQ_gcC:
+    citations: 0
+    title: "\u6CBF\u6D77\u6E2F\u53E3\u901A\u822A\u73AF\u5883\u70ED\u5E26\u6C14\u65CB\u707E\u5BB3\u9884\u8BC4\u4F30\u6A21\u578B\u7814\u7A76"
+    year: '2011'
+  4SiVDYkAAAAJ:f14mYpCygl4C:
+    citations: 0
+    title: "Using land\u2010based sites for air\u2010sea interaction studies"
+    year: Unknown Year
+  4SiVDYkAAAAJ:fJljFJTiP-AC:
+    citations: 2
+    title: "A subgrid\u2010scale parameterization of wave\u2010structure interactions for spectral wave models: Idealized simulations in offshore wind farm conditions"
+    year: '2026'
+  4SiVDYkAAAAJ:ggypx7smY2AC:
+    citations: 13
+    title: Statistics of sea-effect snowfall along the Finnish coastline based on regional climate model data
+    year: '2020'
+  4SiVDYkAAAAJ:i4l3h6Pr8ZgC:
+    citations: 4
+    title: 'Life-cycle assessment of ship electrification in the Yangtze River: Environmental and economic trade-offs'
+    year: '2025'
+  4SiVDYkAAAAJ:ihjKul7GT4YC:
+    citations: 44
+    title: "Impact of Air\u2013Wave\u2013Sea Coupling on the Simulation of Offshore Wind and Wave Energy Potentials"
+    year: '2020'
+  4SiVDYkAAAAJ:jKffii5DqX8C:
+    citations: 1
+    title: "1949\u20142008 \u5E74\u70ED\u5E26\u6C14\u65CB\u5BF9\u4E2D\u56FD\u6CBF\u6D77\u5546\u8239\u822A\u7EBF\u7684\u5F71\u54CD\u9891\u6B21"
+    year: '2010'
+  4SiVDYkAAAAJ:jLZKTOxUWNYC:
+    citations: 65
+    title: Wave effects on coastal upwelling and water level
+    year: '2019'
+  4SiVDYkAAAAJ:lAkp0ULYU5cC:
+    citations: 1
+    title: 'Wind-front interaction within oceanic mixed layer following a storm in the Southern Ocean: Insights from a submesoscale-permitting simulation'
+    year: '2025'
+  4SiVDYkAAAAJ:luR84W4EXegC:
+    citations: 1
+    title: Factors Modulating the Variability of Eddy Kinetic Energy in the Southern Ocean from Idealized Simulations
+    year: '2024'
+  4SiVDYkAAAAJ:nazVBdFzvK0C:
+    citations: 78
+    title: "Ocean\u2010wave\u2010atmosphere interaction processes in a fully coupled modelling system"
+    year: '2019'
+  4SiVDYkAAAAJ:oFWWKr2Zb18C:
+    citations: 82
+    title: "Upper\u2010ocean mixing due to surface gravity waves"
+    year: '2015'
+  4SiVDYkAAAAJ:oKUQpTv76aEC:
+    citations: 0
+    title: "\u957F\u6C5F\u4E2D\u6E38\u76F8\u5BF9\u6E7F\u5EA6\u7684\u6C14\u5019\u53D8\u5316\u7279\u5F81\u53CA\u5176\u5BF9\u822A\u8FD0\u7684\u5F71\u54CD\u5206\u6790"
+    year: '2013'
+  4SiVDYkAAAAJ:oy0z8GdgWhYC:
+    citations: 25
+    title: Surface Wave Impact When Simulating Midlatitude Storm Development
+    year: '2017'
+  4SiVDYkAAAAJ:q736b1r0g6UC:
+    citations: 9
+    title: "Atmospheric fronts shaping the (sub) mesoscale SST\u2010wind coupling over the Southern Ocean: Observational case"
+    year: '2024'
+  4SiVDYkAAAAJ:qfTKKVVEecAC:
+    citations: 0
+    title: "Coupled atmosphere\u2013wave simulations of high-impact weather systems in the North-Atlantic and Baltic Region."
+    year: Unknown Year
+  4SiVDYkAAAAJ:rt-opDMcQ_cC:
+    citations: 28
+    title: "Wind profile in the wave boundary layer and its application in a coupled atmosphere\u2010wave model"
+    year: '2022'
+  4SiVDYkAAAAJ:tYdqGa2HnWcC:
+    citations: 0
+    title: "\u5317\u592A\u5E73\u6D0B\u5927\u6D0B\u822A\u8DEF\u98CE\u533A\u8303\u56F4\u6C14\u5019\u53D8\u5316\u7279\u5F81\u5206\u6790"
+    year: Unknown Year
+  4SiVDYkAAAAJ:uhm167Bumv8C:
+    citations: 37
+    title: A review of surface swell waves and their role in air-sea interactions
+    year: '2024'
+  4SiVDYkAAAAJ:uwWlEQcBbEIC:
+    citations: 0
+    title: "\u5317\u592A\u5E73\u6D0B\u5927\u6D0B\u822A\u8DEF\u98CE\u533A\u8303\u56F4\u6C14\u5019\u53D8\u5316\u7279\u5F81"
+    year: '2014'
+  4SiVDYkAAAAJ:vf0YIhSwahgC:
+    citations: 0
+    title: 'Wave Attenuation by Sea Ice in the Marginal Ice Zone: Estimation and Rollover Behavior'
+    year: '2026'
+  4SiVDYkAAAAJ:w9EjUEod0xMC:
+    citations: 33
+    title: Ship Route Design for Avoiding Heavy Weather and Sea Conditions
+    year: '2014'
+  4SiVDYkAAAAJ:xEWuX1mE_FUC:
+    citations: 1
+    title: Evaluation of Ship Importance in Offshore Wind Farm Area Based on Fusion Gravity Model in Complex Network
+    year: '2025'
+  4SiVDYkAAAAJ:zHqMQc01HCoC:
+    citations: 2
+    title: 'Moisture sources throughout the life cycle of an atmospheric river: Storm Dennis case study'
+    year: '2025'
+  4SiVDYkAAAAJ:zZdEpRDacf4C:
+    citations: 53
+    title: "Swell impact on wind stress and atmospheric mixing in a regional coupled atmosphere\u2010wave model"
+    year: '2016'
