@@ -21,10 +21,6 @@ phd_students:
     years: "2024–"
     role: "main supervisor"
     description: "Wave–ice interactions"
-  - name: "George Victor Emmanuel"
-    years: "2020–"
-    role: "main supervisor"
-    description: "Wave–ice interactions in marginal ice zones"
 
 visiting:
   - name: "Ao Li"
@@ -43,6 +39,11 @@ alumni_phd:
     role: "co-supervisor"
     affiliation: "Uppsala University"
     topic: "Atmospheric rivers"
+  - name: "George Victor Emmanuel"
+    years: "2020–2024"
+    role: "main supervisor"
+    affiliation: "Uppsala University"
+    topic: "Wave–ice interactions in marginal ice zones"
   - name: "Wenli Qiao"
     years: "2019–2022"
     role: "co-supervisor"
