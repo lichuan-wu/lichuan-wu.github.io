@@ -27,6 +27,10 @@ phd_students:
     description: "Wave–ice interactions in marginal ice zones"
 
 visiting:
+  - name: "Ao Li"
+    years: "2026–"
+    affiliation: "China University of Geosciences"
+    affiliation_url: "https://en.cug.edu.cn/"
   - name: "Yu Gao"
     years: "2025–2026"
     affiliation: "Zhejiang University"

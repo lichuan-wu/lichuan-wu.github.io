@@ -29,7 +29,7 @@ nav_order: 4
 <span class="person-focus">{{ person.description }}</span>
 {%- endif %}
 {%- if person.affiliation %}
-<span class="person-focus">{{ person.affiliation }}</span>
+<span class="person-focus">{% if person.affiliation_url %}<a href="{{ person.affiliation_url }}">{{ person.affiliation }}</a>{% else %}{{ person.affiliation }}{% endif %}</span>
 {%- endif %}
 <span class="person-focus">Since {{ person.years | split: "–" | first }}</span>
 </li>
