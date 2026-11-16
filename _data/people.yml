@@ -31,10 +31,6 @@ visiting:
     years: "2026–"
     affiliation: "China University of Geosciences"
     affiliation_url: "https://en.cug.edu.cn/"
-  - name: "Yu Gao"
-    years: "2025–2026"
-    affiliation: "Zhejiang University"
-    role: "main advisor"
 
 alumni_phd:
   - name: "Ting Lin"
@@ -64,6 +60,9 @@ alumni_postdoc:
     role: "main supervisor"
 
 alumni_visiting:
+  - name: "Yu Gao"
+    years: "2025–2026"
+    affiliation: "Zhejiang University"
   - name: "Hongxun Huang"
     years: "2022–2023"
     affiliation: "Wuhan University of Technology"
